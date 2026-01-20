@@ -1,0 +1,28 @@
+{
+  "name": "pcat",
+  "version": "1.0.0",
+  "description": "PCAT Photo App",
+  "keywords": [
+    "photo",
+    "app",
+    "camera"
+  ],
+  "homepage": "https://github.com/Emregoktug/PCAT#readme",
+  "bugs": {
+    "url": "https://github.com/Emregoktug/PCAT/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emregoktug/PCAT.git"
+  },
+  "license": "ISC",
+  "author": "emre göktuğ kayış",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "prettier": "3.8.0"
+  }
+}
