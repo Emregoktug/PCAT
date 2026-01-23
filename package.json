@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "ejs": "^4.0.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "express-fileupload": "^1.5.2",
+    "mongoose": "^9.1.5"
   }
 }
