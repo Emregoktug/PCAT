@@ -34,15 +34,9 @@
                 <main>
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="tm-page-title mb-4">Our Video Catalog</h2>
                             <div class="tm-categories-container mb-5">
-                                <h3 class="tm-text-primary tm-categories-text">Categories:</h3>
                                 <ul class="nav tm-category-list">
-                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link active">All</a></li>
-                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Drone Shots</a></li>
-                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Nature</a></li>
-                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Actions</a></li>
-                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Featured</a></li>
+                                    
                                 </ul>
                             </div>        
                         </div>
@@ -68,15 +62,32 @@
                     </div>
 
                     <!-- Catalog Paging Buttons -->
-                    <div>
-                        <ul class="nav tm-paging-links">
-                            <li class="nav-item active"><a href="#" class="nav-link tm-paging-link">1</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link tm-paging-link">2</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link tm-paging-link">3</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link tm-paging-link">4</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link tm-paging-link">></a></li>
-                        </ul>
-                    </div>
+                    <% if (pages > 1) { %>
+  <div class="d-flex justify-content-center mt-4">
+    <ul class="nav tm-paging-links">
+
+      <% if (current > 1) { %>
+        <li class="nav-item">
+          <a class="nav-link tm-paging-link" href="/?page=<%= current - 1 %>">&lt;</a>
+        </li>
+      <% } %>
+
+      <% for (let i = 1; i <= pages; i++) { %>
+        <li class="nav-item <%= current === i ? 'active' : '' %>">
+          <a class="nav-link tm-paging-link" href="/?page=<%= i %>"><%= i %></a>
+        </li>
+      <% } %>
+
+      <% if (current < pages) { %>
+        <li class="nav-item">
+          <a class="nav-link tm-paging-link" href="/?page=<%= current + 1 %>">&gt;</a>
+        </li>
+      <% } %>
+
+    </ul>
+  </div>
+<% } %>
+
                 </main>
                 <%- include('partials/_footer')-%>
                
@@ -143,3 +154,17 @@
 </body>
 
 </html>
+
+
+
+
+<div class="pagination d-flex justify-content-center mt-4">
+  <% for (let i = 1; i <= pages; i++) { %>
+    <a
+      href="/?page=<%= i %>"
+      class="btn btn-sm mx-1 <%= current === i ? 'btn-primary' : 'btn-outline-primary' %>"
+    >
+      <%= i %>
+    </a>
+  <% } %>
+</div>

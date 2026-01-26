@@ -1,0 +1,39 @@
+<%- include('partials/_header') %>
+
+<body>
+  <div class="container mt-5">
+    <h2>Edit Photo</h2>
+
+    <form action="/photos/<%= photo._id %>?_method=PUT" method="POST">
+
+      <!-- TITLE -->
+      <div class="form-group">
+        <label>Title</label>
+        <input
+          type="text"
+          name="title"
+          class="form-control"
+          value="<%= photo.title %>"
+          required
+        />
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="form-group mt-3">
+        <label>Description</label>
+        <textarea
+          name="description"
+          rows="5"
+          class="form-control"
+          required
+        ><%= photo.description %></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success mt-3">
+        Update
+      </button>
+
+    </form>
+  </div>
+</body>
+</html>
