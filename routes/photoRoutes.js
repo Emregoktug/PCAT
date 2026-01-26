@@ -7,10 +7,13 @@ router.get('/', photoController.getAllPhotos);
 
 // ADD
 router.get('/add', photoController.getAddPage);
+
 router.post('/photos', photoController.createPhoto);
 
 // EDIT
 router.get('/photos/edit/:id', photoController.getEditPage);
+router.get('/about', photoController.getAboutPage);
+
 router.put('/photos/:id', photoController.updatePhoto);
 
 // DELETE

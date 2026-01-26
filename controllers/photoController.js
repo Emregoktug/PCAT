@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const Photo = require('../models/Photo');
 
-// LIST
+//LIST (HOME)
 exports.getAllPhotos = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = 3;
@@ -19,16 +19,18 @@ exports.getAllPhotos = async (req, res) => {
     photos,
     current: page,
     pages: Math.ceil(totalPhotos / limit),
+    currentPage: 'home', // ✅ DÜZELTİLDİ
   });
 };
 
-// ADD PAGE
+//ADD PAGE
 exports.getAddPage = (req, res) => {
-  res.render('add');
+  res.render('add', {
+    currentPage: 'add', // ✅ DÜZELTİLDİ
+  });
 };
 
 //CREATE
-
 exports.createPhoto = async (req, res) => {
   const uploadDir = path.join(__dirname, '../public/uploads');
 
@@ -48,26 +50,26 @@ exports.createPhoto = async (req, res) => {
   });
 };
 
-//EDIT
-
+//EDIT PAGE
 exports.getEditPage = async (req, res) => {
   const photo = await Photo.findById(req.params.id);
-  res.render('edit', { photo });
+  res.render('edit', {
+    photo,
+    currentPage: 'photo',
+  });
 };
 
 //UPDATE
-
 exports.updatePhoto = async (req, res) => {
   await Photo.findByIdAndUpdate(req.params.id, req.body);
   res.redirect('/photos/' + req.params.id);
 };
 
-//DELETE
-
+// DELETE
 exports.deletePhoto = async (req, res) => {
   const photo = await Photo.findById(req.params.id);
 
-  const filePath = path.join(__dirname, 'public', photo.image);
+  const filePath = path.join(__dirname, '../public', photo.image);
   if (fs.existsSync(filePath)) {
     fs.unlinkSync(filePath);
   }
@@ -76,9 +78,19 @@ exports.deletePhoto = async (req, res) => {
   res.redirect('/');
 };
 
-//SHOW
-
+//SHOW (DETAIL)
 exports.getPhoto = async (req, res) => {
   const photo = await Photo.findById(req.params.id);
-  res.render('photo', { photo });
+  res.render('photo', {
+    photo,
+    currentPage: 'photo',
+  });
+};
+
+//ABOUT
+// ABOUT PAGE
+exports.getAboutPage = (req, res) => {
+  res.render('about', {
+    currentPage: 'about',
+  });
 };
